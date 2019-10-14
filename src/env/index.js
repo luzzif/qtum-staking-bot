@@ -5,6 +5,11 @@ if (NODE_ENV !== "production") {
     require("dotenv").config();
 }
 
+export const PORT = env("PORT", {
+    required: true,
+    nonProductionDefault: 8080
+});
+
 export const ADDRESSES = env("ADDRESSES", {
     required: true,
     parse: fusedAddresses => fusedAddresses.split(";")

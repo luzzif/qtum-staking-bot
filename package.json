@@ -30,7 +30,7 @@
         "lint:code": "eslint \"src/**/*.js\"",
         "lint:prettier": "prettier -l src/**/*.js",
         "lint:commit-message": "commitlint -e",
-        "lint:ci": "yarn lint:code && yarn lint:prettier",
+        "lint": "yarn lint:code && yarn lint:prettier",
         "build": "rimraf build && babel --copy-files -d build src",
         "start": "node build/",
         "start:dev": "yarn build && yarn start"
