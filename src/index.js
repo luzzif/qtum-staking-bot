@@ -1,9 +1,10 @@
 import "@babel/polyfill";
 import { bot } from "./bot";
 import { handleGetRichness } from "./commands/get-richness";
-import express from "express";
-import { PORT } from "./env";
+import { PORT, HEROKU_APP_NAME } from "./env";
+
+const webhookPath = "/messages";
 
 bot.command("getRichness", handleGetRichness);
-bot.launch();
-express().listen(PORT);
+bot.telegram.setWebhook(`https://${HEROKU_APP_NAME}:${PORT}${webhookPath}`);
+bot.startWebhook(webhookPath, null, PORT);
