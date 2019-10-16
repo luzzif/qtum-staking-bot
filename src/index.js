@@ -1,16 +1,15 @@
 import "@babel/polyfill";
 import { bot } from "./bot";
 import { handleGetRichness } from "./commands/get-richness";
-import { PORT, HEROKU_APP_NAME } from "./env";
-
-console.log(`selected port is ${PORT}`);
-console.log(`app name is ${HEROKU_APP_NAME}`);
-
-const webhookPath = "/messages";
-const webhookAddress = `https://${HEROKU_APP_NAME}:${PORT}${webhookPath}`;
-
-console.log(`webhook address is ${webhookAddress}`);
+import express from "express";
+import fetch from "node-fetch";
+import { APP_URL } from "./env";
 
 bot.command("getRichness", handleGetRichness);
-bot.startWebhook(webhookPath, null, PORT);
-bot.telegram.setWebhook(webhookAddress);
+bot.startPolling();
+
+express().get("/", (request, response) => response.status(204).send());
+
+setInterval(() => {
+    fetch(APP_URL);
+}, 60000);

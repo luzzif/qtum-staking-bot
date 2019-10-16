@@ -30,7 +30,7 @@ export const BOT_TOKEN = env("BOT_TOKEN", {
     nonProductionDefault: "test-token"
 });
 
-export const HEROKU_APP_NAME = env("HEROKU_APP_NAME", {
+export const APP_URL = env("APP_URL", {
     required: true,
-    nonProductionDefault: "test-app-name"
+    nonProductionDefault: "test-app-url"
 });
