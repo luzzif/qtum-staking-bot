@@ -4,9 +4,13 @@ import { handleGetRichness } from "./commands/get-richness";
 import { PORT, HEROKU_APP_NAME } from "./env";
 
 console.log(`selected port is ${PORT}`);
+console.log(`app name is ${HEROKU_APP_NAME}`);
 
 const webhookPath = "/messages";
+const webhookAddress = `https://${HEROKU_APP_NAME}:${PORT}${webhookPath}`;
+
+console.log(`webhook address is ${webhookAddress}`);
 
 bot.command("getRichness", handleGetRichness);
-bot.telegram.setWebhook(`https://${HEROKU_APP_NAME}:${PORT}${webhookPath}`);
+bot.telegram.setWebhook(webhookAddress);
 bot.startWebhook(webhookPath, null, PORT);
