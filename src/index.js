@@ -3,6 +3,8 @@ import { bot } from "./bot";
 import { handleGetRichness } from "./commands/get-richness";
 import { PORT, HEROKU_APP_NAME } from "./env";
 
+console.log(`selected port is ${PORT}`);
+
 const webhookPath = "/messages";
 
 bot.command("getRichness", handleGetRichness);
