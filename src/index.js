@@ -5,7 +5,7 @@ import express from "express";
 import fetch from "node-fetch";
 import { APP_URL, PORT } from "./env";
 
-bot.command("getRichness", handleGetRichness);
+bot.command("gr", handleGetRichness);
 bot.startPolling();
 
 express()
