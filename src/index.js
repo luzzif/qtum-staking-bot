@@ -12,5 +12,5 @@ const webhookAddress = `https://${HEROKU_APP_NAME}:${PORT}${webhookPath}`;
 console.log(`webhook address is ${webhookAddress}`);
 
 bot.command("getRichness", handleGetRichness);
-bot.telegram.setWebhook(webhookAddress);
 bot.startWebhook(webhookPath, null, PORT);
+bot.telegram.setWebhook(webhookAddress);
