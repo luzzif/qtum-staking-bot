@@ -3,9 +3,9 @@ import { bot } from "./bot";
 import { handleGetRichness } from "./commands/get-richness";
 import express from "express";
 import fetch from "node-fetch";
-import { APP_URL, PORT } from "./env";
+import { APP_URL, PORT, BOT_USERNAME } from "./env";
 
-bot.command("gr", handleGetRichness);
+bot.command(["gr", `gr@${BOT_USERNAME}`], handleGetRichness);
 bot.startPolling();
 
 express()

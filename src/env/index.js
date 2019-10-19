@@ -34,3 +34,8 @@ export const APP_URL = env("APP_URL", {
     required: true,
     nonProductionDefault: "test-app-url"
 });
+
+export const BOT_USERNAME = env("BOT_USERNAME", {
+    required: true,
+    nonProductionDefault: "test-username"
+});
