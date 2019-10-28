@@ -35,7 +35,7 @@ export const handleGetRichness = async context => {
         });
         const fiatBalance = (gainedBalance * price).toFixed(2);
         return context.replyWithMarkdown(
-            `- Total balance: ${totalBalance}\n- Gained balance: ${gainedBalance}\n- Gained fiat: ${fiatBalance}`
+            `- Total balance: ${totalBalance}\n- Gained balance: ${gainedBalance}\n- Gained ${FIAT_CURRENCY}: ${fiatBalance}`
         );
     } catch (error) {
         console.log(error);
