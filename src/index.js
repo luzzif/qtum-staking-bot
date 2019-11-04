@@ -7,7 +7,7 @@ import fetch from "node-fetch";
 import { APP_URL, PORT, BOT_USERNAME } from "./env";
 
 bot.command(["gr", `gr@${BOT_USERNAME}`], handleGetRichness);
-bot.command(["lr", `lr@${BOT_USERNAME}`], handleGetLastStake);
+bot.command(["gls", `gls@${BOT_USERNAME}`], handleGetLastStake);
 bot.startPolling();
 
 express()
