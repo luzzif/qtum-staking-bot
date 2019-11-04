@@ -11,7 +11,6 @@
         "bluebird": "^3.7.1",
         "decimal.js": "^10.2.0",
         "express": "^4.17.1",
-        "lodash": "^4.17.15",
         "luxon": "^1.21.1",
         "node-fetch": "^2.6.0",
         "telegraf": "^3.32.0",
