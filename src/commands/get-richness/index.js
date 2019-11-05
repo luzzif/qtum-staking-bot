@@ -38,7 +38,6 @@ export const handleGetRichness = async context => {
             `- Total balance: ${totalBalance}\n- Gained balance: ${gainedBalance}\n- Gained ${FIAT_CURRENCY}: ${fiatBalance}`
         );
     } catch (error) {
-        console.log(error);
         return context.replyWithMarkdown(
             "An error occurred, please try again later..."
         );
