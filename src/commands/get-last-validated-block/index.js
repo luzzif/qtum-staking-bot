@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { ADDRESSES } from "../../env"
 import { qtumApiClient } from "../../clients/qtum-api"
 
-export const handleGetLastStake = async context => {
+export const handleGetLastValidatedBlock = async context => {
     try {
         const transactionLists = await map(ADDRESSES, async address => {
             // We assume that the latest stake tx is within the last 10 txs
@@ -19,9 +19,9 @@ export const handleGetLastStake = async context => {
             }
         }).filter(tx => tx);
 
-        const lastStakeDate = DateTime.fromSeconds(stakeTxsTimestamps[0]).toFormat("dd/LL/yyyy");
+        const lastBlockDate = DateTime.fromSeconds(stakeTxsTimestamps[0]).toFormat("dd/LL/yyyy");
         return context.replyWithMarkdown(
-            `Last stake reward was at ${lastStakeDate.toString()}`
+            `Last block validated at ${lastBlockDate.toString()}`
         );
     } catch (error) {
         return context.replyWithMarkdown(
