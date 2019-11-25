@@ -14,7 +14,9 @@ exports.handleGetRichness = async context => {
             await reduce(
                 ADDRESSES,
                 async (totalBalance, address) => {
-                    const response = await fetch(`/address/${address}/balance`);
+                    const response = await fetch(
+                        `https://qtum.info/api/address/${address}/balance`
+                    );
                     if (!response.ok) {
                         throw new Error();
                     }
