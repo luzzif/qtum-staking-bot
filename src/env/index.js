@@ -1,4 +1,4 @@
-const env = require("@mondora/env");
+const env = require("@mondora/env").default;
 
 const NODE_ENV = env("NODE_ENV", { default: "development" });
 if (NODE_ENV !== "production") {
