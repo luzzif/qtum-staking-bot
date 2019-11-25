@@ -1,41 +1,42 @@
-import { reduce } from "bluebird";
-import {
+const { reduce } = require("bluebird");
+const {
     ADDRESSES,
     INITIAL_AMOUNT,
     FIAT_CURRENCY,
     CRYPTO_COMPARE_API_KEY
-} from "../../env";
-import { getQtumFromSatoshis } from "../../utils/conversions";
-import { qtumApiClient } from "../../clients/qtum-api";
-import { cryptoCompareClient } from "../../clients/crypto-compare";
+} = require("../../env");
+const { getQtumFromSatoshis } = require("../../utils/conversions");
+const fetch = require("node-fetch").default;
 
-export const handleGetRichness = async context => {
+exports.handleGetRichness = async context => {
     try {
         const totalBalance = getQtumFromSatoshis(
             await reduce(
                 ADDRESSES,
                 async (totalBalance, address) => {
-                    const { data: balance } = await qtumApiClient.get(
-                        `/address/${address}/balance`
-                    );
+                    const response = await fetch(`/address/${address}/balance`);
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    const balance = await response.json();
                     return (totalBalance += balance);
                 },
                 0
             )
         ).toFixed(2);
         const gainedBalance = (totalBalance - INITIAL_AMOUNT).toFixed(2);
+        const response = await fetch(
+            `https://min-api.cryptocompare.com/data/price?fsym=QTUM&tsyms=${FIAT_CURRENCY}&api_key=${CRYPTO_COMPARE_API_KEY}`
+        );
+        if (!response.ok) {
+            throw new Error();
+        }
         const {
             data: { EUR: price }
-        } = await cryptoCompareClient.get("data/price", {
-            params: {
-                fsym: "QTUM",
-                tsyms: FIAT_CURRENCY,
-                api_key: CRYPTO_COMPARE_API_KEY
-            }
-        });
+        } = await response.json();
         const fiatBalance = (gainedBalance * price).toFixed(2);
         return context.replyWithMarkdown(
-            `- Total balance: ${totalBalance}\n- Gained balance: ${gainedBalance}\n- Gained ${FIAT_CURRENCY}: ${fiatBalance}`
+            `* Total balance: ${totalBalance}\n* Gained balance: ${gainedBalance}\n* Gained ${FIAT_CURRENCY}: ${fiatBalance}`
         );
     } catch (error) {
         return context.replyWithMarkdown(

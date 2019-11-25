@@ -1,4 +1,4 @@
-import Decimal from "decimal.js";
+const { Decimal } = require("decimal.js");
 
-export const getQtumFromSatoshis = satoshis =>
+exports.getQtumFromSatoshis = satoshis =>
     new Decimal(satoshis).dividedBy(100000000).toNumber();

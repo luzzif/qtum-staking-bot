@@ -1,25 +1,37 @@
-import { map } from "bluebird";
-import { DateTime } from "luxon";
-import { ADDRESSES } from "../../env"
-import { qtumApiClient } from "../../clients/qtum-api"
+const { map } = require("bluebird");
+const { DateTime } = require("luxon");
+const { ADDRESSES } = require("../../env");
+const fetch = require("node-fetch");
 
-export const handleGetLastValidatedBlock = async context => {
+exports.handleGetLastValidatedBlock = async context => {
     try {
         const transactionLists = await map(ADDRESSES, async address => {
             // We assume that the latest stake tx is within the last 10 txs
-            const { data } = await qtumApiClient.get(`/address/${address}/txs?limit=10&offset=0`);
+            const response = await fetch(
+                `/address/${address}/txs?limit=10&offset=0`
+            );
+            if (!response.ok) {
+                throw new Error();
+            }
+            const data = await response.json();
             return data.transactions;
         });
         const transactions = [].concat(...transactionLists);
 
         const stakeTxsTimestamps = await map(transactions, async tx => {
-            const { data } = await qtumApiClient.get(`/tx/${tx}`);
+            const response = await fetch(`https://qtum.info/api/tx/${tx}`);
+            if (!response.ok) {
+                throw new Error();
+            }
+            const data = await response.json();
             if (data.isCoinstake) {
                 return data.timestamp;
             }
         }).filter(tx => tx);
 
-        const lastBlockDate = DateTime.fromSeconds(stakeTxsTimestamps[0]).toFormat("dd/LL/yyyy");
+        const lastBlockDate = DateTime.fromSeconds(
+            stakeTxsTimestamps[0]
+        ).toFormat("dd/LL/yyyy");
         return context.replyWithMarkdown(
             `Last block validated at ${lastBlockDate.toString()}`
         );
@@ -28,4 +40,4 @@ export const handleGetLastValidatedBlock = async context => {
             "An error occurred, please try again later..."
         );
     }
-}
+};

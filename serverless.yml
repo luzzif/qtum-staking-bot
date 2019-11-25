@@ -1,0 +1,22 @@
+service: qtum-staking-bot
+app: qtum-staking-bot
+org: luzzif
+provider:
+    name: aws
+    runtime: nodejs12.x
+    region: eu-west-1
+    stage: prod
+environment:
+    ADDRESSES: ${env:ADDRESSES}
+    INITIAL_AMOUNT: ${env:INITIAL_AMOUNT}
+    CRYPTO_COMPARE_API_KEY: ${env:CRYPTO_COMPARE_API_KEY}
+    FIAT_CURRENCY: ${env:FIAT_CURRENCY}
+    BOT_TOKEN: ${env:BOT_TOKEN}
+    BOT_USERNAME: ${env:BOT_USERNAME}
+functions:
+    updates-handler:
+        handler: src/index.handler
+        events:
+            - http:
+                  path: updates/handles
+                  method: post
