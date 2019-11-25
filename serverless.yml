@@ -6,14 +6,14 @@ provider:
     runtime: nodejs12.x
     region: eu-west-1
     stage: prod
-environment:
-    NODE_ENV: ${param:NODE_ENV}
-    ADDRESSES: ${param:ADDRESSES}
-    INITIAL_AMOUNT: ${param:INITIAL_AMOUNT}
-    CRYPTO_COMPARE_API_KEY: ${param:CRYPTO_COMPARE_API_KEY}
-    FIAT_CURRENCY: ${param:FIAT_CURRENCY}
-    BOT_TOKEN: ${param:BOT_TOKEN}
-    BOT_USERNAME: ${param:BOT_USERNAME}
+    environment:
+        NODE_ENV: ${param:NODE_ENV}
+        ADDRESSES: ${param:ADDRESSES}
+        INITIAL_AMOUNT: ${param:INITIAL_AMOUNT}
+        CRYPTO_COMPARE_API_KEY: ${param:CRYPTO_COMPARE_API_KEY}
+        FIAT_CURRENCY: ${param:FIAT_CURRENCY}
+        BOT_TOKEN: ${param:BOT_TOKEN}
+        BOT_USERNAME: ${param:BOT_USERNAME}
 functions:
     updates-handler:
         handler: src/index.handler
