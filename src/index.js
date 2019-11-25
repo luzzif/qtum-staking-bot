@@ -9,6 +9,11 @@ bot.command(["gr", `gr@${BOT_USERNAME}`], handleGetRichness);
 bot.command(["glvb", `glvb@${BOT_USERNAME}`], handleGetLastValidatedBlock);
 
 exports.handler = (event, context, callback) => {
-    bot.handleUpdate(JSON.parse(event.body));
-    return callback(null, { statusCode: 204 });
+    try {
+        bot.handleUpdate(JSON.parse(event.body));
+        return callback(null, { statusCode: 204 });
+    } catch (error) {
+        console.log(error);
+        return callback(null, { statusCode: 500 });
+    }
 };
