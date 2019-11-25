@@ -7,13 +7,13 @@ provider:
     region: eu-west-1
     stage: prod
 environment:
-    NODE_ENV: ${params:NODE_ENV}
-    ADDRESSES: ${params:ADDRESSES}
-    INITIAL_AMOUNT: ${params:INITIAL_AMOUNT}
-    CRYPTO_COMPARE_API_KEY: ${params:CRYPTO_COMPARE_API_KEY}
-    FIAT_CURRENCY: ${params:FIAT_CURRENCY}
-    BOT_TOKEN: ${params:BOT_TOKEN}
-    BOT_USERNAME: ${params:BOT_USERNAME}
+    NODE_ENV: ${param:NODE_ENV}
+    ADDRESSES: ${param:ADDRESSES}
+    INITIAL_AMOUNT: ${param:INITIAL_AMOUNT}
+    CRYPTO_COMPARE_API_KEY: ${param:CRYPTO_COMPARE_API_KEY}
+    FIAT_CURRENCY: ${param:FIAT_CURRENCY}
+    BOT_TOKEN: ${param:BOT_TOKEN}
+    BOT_USERNAME: ${param:BOT_USERNAME}
 functions:
     updates-handler:
         handler: src/index.handler
