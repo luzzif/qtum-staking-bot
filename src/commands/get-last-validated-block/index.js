@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 exports.handleGetLastValidatedBlock = async context => {
     try {
         const transactionLists = await map(
-            process.env.ADDRESSES,
+            process.env.ADDRESSES.split(";"),
             async address => {
                 // We assume that the latest stake tx is within the last 10 txs
                 const response = await fetch(
