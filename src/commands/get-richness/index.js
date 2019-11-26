@@ -6,7 +6,7 @@ exports.handleGetRichness = async context => {
     try {
         const totalBalance = getQtumFromSatoshis(
             await reduce(
-                process.env.ADDRESSES,
+                process.env.ADDRESSES.split(";"),
                 async (totalBalance, address) => {
                     const response = await fetch(
                         `https://qtum.info/api/address/${address}/balance`
