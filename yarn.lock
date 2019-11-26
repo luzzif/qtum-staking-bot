@@ -228,11 +228,6 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@mondora/env@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@mondora/env/-/env-1.3.0.tgz#a693f098c5a53e249fcac85ef32d181996785b25"
-  integrity sha512-f6evgtc3SrVMnCBGPrkeyZTo3+fcD2SDGiUkJuVm2Vo7czp68HfNGT0iR4mAFAZD9oJ6T67JvLw+FyN4cLyMdQ==
-
 "@serverless/cli@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@serverless/cli/-/cli-1.4.0.tgz#46c35c35c2ba8ae224033e7157754aed789074f0"

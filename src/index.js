@@ -1,12 +1,13 @@
-const { bot } = require("./bot");
 const {
     handleGetLastValidatedBlock
 } = require("./commands/get-last-validated-block");
 const { handleGetRichness } = require("./commands/get-richness");
-const { BOT_USERNAME } = require("./env");
+const Telegraf = require("telegraf");
 
-bot.command(["gr", `gr@${BOT_USERNAME}`], handleGetRichness);
-bot.command(["glvb", `glvb@${BOT_USERNAME}`], handleGetLastValidatedBlock);
+const bot = new Telegraf(process.env.BOT_TOKEN);
+const botUsername = process.env.BOT_USERNAME;
+bot.command(["gr", `gr@${botUsername}`], handleGetRichness);
+bot.command(["glvb", `glvb@${botUsername}`], handleGetLastValidatedBlock);
 
 exports.handler = (event, context, callback) => {
     try {

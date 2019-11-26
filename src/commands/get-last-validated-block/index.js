@@ -1,21 +1,23 @@
 const { map } = require("bluebird");
 const { DateTime } = require("luxon");
-const { ADDRESSES } = require("../../env");
 const fetch = require("node-fetch");
 
 exports.handleGetLastValidatedBlock = async context => {
     try {
-        const transactionLists = await map(ADDRESSES, async address => {
-            // We assume that the latest stake tx is within the last 10 txs
-            const response = await fetch(
-                `/address/${address}/txs?limit=10&offset=0`
-            );
-            if (!response.ok) {
-                throw new Error();
+        const transactionLists = await map(
+            process.env.ADDRESSES,
+            async address => {
+                // We assume that the latest stake tx is within the last 10 txs
+                const response = await fetch(
+                    `/address/${address}/txs?limit=10&offset=0`
+                );
+                if (!response.ok) {
+                    throw new Error();
+                }
+                const data = await response.json();
+                return data.transactions;
             }
-            const data = await response.json();
-            return data.transactions;
-        });
+        );
         const transactions = [].concat(...transactionLists);
 
         const stakeTxsTimestamps = await map(transactions, async tx => {
