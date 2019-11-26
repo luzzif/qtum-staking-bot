@@ -9,7 +9,7 @@ exports.handleGetLastValidatedBlock = async context => {
             async address => {
                 // We assume that the latest stake tx is within the last 10 txs
                 const response = await fetch(
-                    `/address/${address}/txs?limit=10&offset=0`
+                    `https://qtum.info/api/address/${address}/txs?limit=10&offset=0`
                 );
                 if (!response.ok) {
                     throw new Error();
