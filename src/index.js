@@ -1,12 +1,14 @@
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
     try {
-        getConfiguredBot().handleUpdate(JSON.parse(event.body));
+        const bot = getConfiguredBot();
+        await bot.handleUpdate(JSON.parse(event.body));
         return callback(null, { statusCode: 204 });
     } catch (error) {
         console.log(error);
         return callback(null, { statusCode: 500 });
     }
 };
+
 const getConfiguredBot = () => {
     const {
         handleGetLastValidatedBlock
