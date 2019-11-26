@@ -4,7 +4,7 @@ exports.handler = async (event, context, callback) => {
         await bot.handleUpdate(JSON.parse(event.body));
         return callback(null, { statusCode: 204 });
     } catch (error) {
-        console.log(error);
+        console.error("generic error handling telegram message", error);
         return callback(null, { statusCode: 500 });
     }
 };

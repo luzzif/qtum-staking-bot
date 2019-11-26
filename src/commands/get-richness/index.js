@@ -37,6 +37,7 @@ exports.handleGetRichness = async context => {
             `* Total balance: ${totalBalance}\n* Gained balance: ${gainedBalance}\n* Gained ${process.env.FIAT_CURRENCY}: ${fiatBalance}`
         );
     } catch (error) {
+        console.error("error getting last validated block", error);
         return context.replyWithMarkdown(
             "An error occurred, please try again later..."
         );

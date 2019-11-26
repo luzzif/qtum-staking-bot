@@ -38,6 +38,7 @@ exports.handleGetLastValidatedBlock = async context => {
             `Last block validated at ${lastBlockDate.toString()}`
         );
     } catch (error) {
+        console.error("error getting richness", error);
         return context.replyWithMarkdown(
             "An error occurred, please try again later..."
         );
