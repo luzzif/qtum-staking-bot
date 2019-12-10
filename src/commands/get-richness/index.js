@@ -30,9 +30,10 @@ exports.handleGetRichness = async context => {
             throw new Error();
         }
         const { EUR: price } = await response.json();
-        const fiatBalance = (gainedBalance * price).toFixed(2);
+        const gainedFiatBalance = (gainedBalance * price).toFixed(2);
+        const totalFiatBalance = (totalBalance * price).toFixed(2);
         return context.replyWithMarkdown(
-            `- Total balance: ${totalBalance}\n- Gained balance: ${gainedBalance}\n- Gained ${process.env.FIAT_CURRENCY}: ${fiatBalance}`
+            `- Total balance: ${totalBalance} (${totalFiatBalance} ${process.env.FIAT_CURRENCY})\n- Gained balance: ${gainedBalance} (${gainedFiatBalance} ${process.env.FIAT_CURRENCY})`
         );
     } catch (error) {
         console.error("error getting last validated block", error);
