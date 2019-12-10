@@ -2,7 +2,7 @@
     "name": "qtum-staking-bot",
     "description": "A Telegram bot made to check my personal QTUM staking process status.",
     "author": "Federico Luzzi <fedeluzzi00@gmail.com>",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "private": true,
     "dependencies": {
         "bluebird": "^3.7.1",
