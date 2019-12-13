@@ -4,7 +4,7 @@ const jayson = require("jayson");
 exports.handleGetStakingStatus = async context => {
     try {
         const client = jayson.client.http(`http://${process.env.NODE_IP}:3888`);
-        const response = await client.request("getstakinginfo");
+        const response = await client.request("getstakinginfo", []);
         console.log("Dude", response);
         const {
             enabled,
