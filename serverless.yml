@@ -20,3 +20,4 @@ functions:
             FIAT_CURRENCY: ${param:FIAT_CURRENCY}
             BOT_TOKEN: ${param:BOT_TOKEN}
             BOT_USERNAME: ${param:BOT_USERNAME}
+            NODE_IP: ${param:NODE_IP}

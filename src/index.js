@@ -14,11 +14,13 @@ const getConfiguredBot = () => {
         handleGetLastValidatedBlock
     } = require("./commands/get-last-validated-block");
     const { handleGetRichness } = require("./commands/get-richness");
+    const { handleGetStakingStatus } = require("./commands/get-staking-status");
     const Telegraf = require("telegraf");
 
     const bot = new Telegraf(process.env.BOT_TOKEN);
     const botUsername = process.env.BOT_USERNAME;
     bot.command(["gr", `gr@${botUsername}`], handleGetRichness);
     bot.command(["glvb", `glvb@${botUsername}`], handleGetLastValidatedBlock);
+    bot.command(["gss", `gss@${botUsername}`], handleGetStakingStatus);
     return bot;
 };
