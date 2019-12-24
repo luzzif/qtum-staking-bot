@@ -21,3 +21,5 @@ functions:
             BOT_TOKEN: ${param:BOT_TOKEN}
             BOT_USERNAME: ${param:BOT_USERNAME}
             NODE_IP: ${param:NODE_IP}
+            RPC_USER: ${param:RPC_USER}
+            RPC_PASSWORD: ${param:RPC_PASSWORD}

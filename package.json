@@ -10,7 +10,8 @@
         "jayson": "^3.2.0",
         "luxon": "^1.21.2",
         "node-fetch": "^2.6.0",
-        "telegraf": "^3.33.3"
+        "telegraf": "^3.33.3",
+        "uuid": "^3.3.3"
     },
     "devDependencies": {
         "@commitlint/cli": "^8.2.0",
