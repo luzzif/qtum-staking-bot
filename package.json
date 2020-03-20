@@ -4,24 +4,6 @@
     "author": "Federico Luzzi <fedeluzzi00@gmail.com>",
     "version": "1.1.0",
     "private": true,
-    "dependencies": {
-        "bluebird": "^3.7.1",
-        "decimal.js": "^10.2.0",
-        "jayson": "^3.2.0",
-        "luxon": "^1.21.2",
-        "node-fetch": "^2.6.0",
-        "telegraf": "^3.33.3",
-        "uuid": "^3.3.3"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^8.2.0",
-        "@commitlint/config-conventional": "^8.2.0",
-        "babel-eslint": "^10.0.3",
-        "eslint": "^6.6.0",
-        "husky": "^3.1.0",
-        "prettier": "^1.19.1",
-        "serverless": "^1.58.0"
-    },
     "scripts": {
         "lint:code": "eslint \"src/**/*.js\"",
         "lint:prettier": "prettier -l src/**/*.js",
@@ -30,5 +12,21 @@
         "build": "rimraf build && babel --copy-files -d build src",
         "start": "node build/",
         "start:dev": "yarn build && yarn start"
+    },
+    "dependencies": {
+        "bluebird": "^3.7.2",
+        "decimal.js": "^10.2.0",
+        "luxon": "^1.22.0",
+        "node-fetch": "^2.6.0",
+        "telegraf": "^3.36.0",
+        "uuid": "^7.0.2"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.8.0",
+        "husky": "^4.2.3",
+        "prettier": "^1.19.1"
     }
 }
