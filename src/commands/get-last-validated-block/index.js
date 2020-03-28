@@ -31,9 +31,13 @@ exports.handleGetLastValidatedBlock = async context => {
             }
         }).filter(tx => tx);
 
+        const sortedStakeTxsTimestamps = stakeTxsTimestamps.sort(
+            (a, b) => b - a
+        );
         const lastBlockDate = DateTime.fromSeconds(
-            stakeTxsTimestamps[0]
+            sortedStakeTxsTimestamps[0]
         ).toFormat("dd/LL/yyyy");
+
         return context.replyWithMarkdown(
             `Last block validated at ${lastBlockDate.toString()}`
         );
