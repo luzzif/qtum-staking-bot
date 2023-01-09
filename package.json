@@ -16,7 +16,7 @@
     "dependencies": {
         "bluebird": "^3.7.2",
         "decimal.js": "^10.2.0",
-        "luxon": "^1.22.0",
+        "luxon": "^1.28.1",
         "node-fetch": "^2.6.0",
         "telegraf": "^3.36.0",
         "uuid": "^7.0.2"
